@@ -3,6 +3,7 @@ services:
     app:
         image: benkl/firefly-iii-fints-importer
         volumes:
+            - ./app:/app
             - ./data/configurations:/app/configurations
-        ports: 
+        ports:
             - 8080:8080

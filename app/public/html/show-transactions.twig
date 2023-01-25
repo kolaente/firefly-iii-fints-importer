@@ -32,8 +32,14 @@
             </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">
-                    <p>{{ transaction.getMainDescription() }}</p>
-                    {% if transaction.getStructuredDescription().ABWA is defined %} <p>{{ transaction.getStructuredDescription()['ABWA'] }}</p>{% endif %}
+                    <p>{{ [
+            transaction.getStructuredDescription()['ABWA'],
+            transaction.getMainDescription(),
+            transaction.getDescription1(),
+            transaction.getDescription2(),
+            transaction.getBookingText(),
+        ]|join(' - ') }}</p>
+{#                    {% if transaction.getStructuredDescription().ABWA is defined %} <p>{{ transaction.getStructuredDescription()['ABWA'] }}</p>{% endif %}#}
                 </li>
             </ul>
         </div>

@@ -83,10 +83,13 @@ class TransactionsToFireflySender
         }
         $firefly_accounts->rewind();
 
-        $description = $transaction->getMainDescription();
-        if ($description == "") {
-            $description = $transaction->getBookingText();
-        }
+        $description = implode(' - ', [
+            $transaction->getStructuredDescription()['ABWA'],
+            $transaction->getMainDescription(),
+            $transaction->getDescription1(),
+            $transaction->getDescription2(),
+            $transaction->getBookingText(),
+        ]);
 
         if ($description == "") {
             $description = $transaction->getDescription1();
